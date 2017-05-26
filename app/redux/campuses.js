@@ -2,11 +2,11 @@ import axios from 'axios'
 
 //CONSTANTS
 const INITIALIZE = 'INITIALIZE_CAMPUSES'
-const GET_STUDENTS = 'GET_STUDENTS'
+const REMOVE_CAMPUS = 'REMOVE_CAMPUS'
 
 //ACTION CREATORS
 const init = campuses => ({type: INITIALIZE, campuses})
-const getCampusStudents = campusStudents => ({type: GET_STUDENTS, campusStudents})
+const removeCampus = campus =>({type: REMOVE_CAMPUS, campus})
 
 //REDUCER
 export default function campusReducer(campuses = [], action) {
@@ -14,8 +14,10 @@ export default function campusReducer(campuses = [], action) {
     case INITIALIZE:
       return action.campuses
 
-    case GET_STUDENTS:
-      return action.campusStudents
+    case REMOVE_CAMPUS:
+      return campuses.filter(campus => {
+        return campus.name !== action.campus.name
+      })
 
   default:
     return campuses
@@ -31,10 +33,10 @@ export const fetchCampuses = () => dispatch => {
   })
 }
 
-export const fetchCampusStudents = (campusName) => dispatch => {
-  axios.get(`/api/campus/${campusName}`)
-  .then(res => dispatch(getCampusStudents(res.data)))
-  .catch((err) => {
+export const deleteCampus = (name) => dispatch => {
+  axios.delete(`/api/campuses/${name}`)
+  .then(res => dispatch(removeCampus(res.data)))
+  .catch(err => {
     console.log(err)
   })
 }
