@@ -41,15 +41,24 @@ export default function reducer(users = [], action) {
 export const fetchUsers = () => dispatch => {
   axios.get('/api/students')
   .then(res => dispatch(init(res.data)))
+  .catch((err) => {
+    console.log(err)
+  })
 }
 
 export const addUser = (name, email, campusId) => dispatch => {
   axios.post('/api/students',
   {name: name, email: email, campusId: campusId})
     .then(res => dispatch(add(res.data)))
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 export const removeUser = (studentId) => dispatch => {
   axios.delete(`/api/students/${studentId}`)
     .then(res => dispatch(remove(res.data)))
+    .catch((err) => {
+      console.log(err)
+    })
 }
