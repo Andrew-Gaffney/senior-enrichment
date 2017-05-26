@@ -47,7 +47,6 @@ const mapDispatch = (dispatch) => {
   return {
     handleSubmit: function(event) {
       dispatch(addUser(event.target.name.value, event.target.email.value, event.target.campusId.value))
-      browserHistory.push('/students')
     }
   }
 }

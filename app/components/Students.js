@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link, browserHistory} from 'react-router'
 import {removeUser} from '../redux/users'
@@ -15,7 +15,7 @@ const Students = ({students, campuses, handleDelete}) => {
       <hr />
       <label>All Students</label>
       <ul>
-       {
+        { students.length ?
          students.map(student => {
            const relevantCampus = campuses.find(campus => {
              return campus.id === student.campusId
@@ -31,10 +31,12 @@ const Students = ({students, campuses, handleDelete}) => {
              </div>
            )
          })
-      }
+         : null
+       }
       </ul>
-      </div>
+  </div>
   )
+
 }
 
 
@@ -49,7 +51,6 @@ const mapDispatch = (dispatch) => {
   return {
     handleDelete: function(event) {
       dispatch(removeUser(event.target.delete.value))
-      browserHistory.push('/')
     }
   }
 }

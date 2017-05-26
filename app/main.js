@@ -8,6 +8,7 @@ import Student from './components/Student'
 import Campus from './components/Campus'
 import Campuses from './components/Campuses'
 import addStudent from './components/addStudent'
+import addCampus from './components/addCampus'
 import {fetchCampuses} from './redux/campuses'
 import {fetchUsers} from './redux/users'
 
@@ -19,6 +20,7 @@ const Routes = ({fetchInitialData}) => {
         <IndexRedirect to = "/campuses" />
         <Route path = "campuses" component = {Campuses} />
         <Route path ="campuses/:campusName" component = {Campus} />
+        <Route path ="addCampus" component = {addCampus} />
         <Route path = "students" component = {Students} />
         <Route path = "addStudent" component = {addStudent} />
         <Route path ="students/:id" component = {Student} />

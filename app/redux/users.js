@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {browserHistory} from 'react-router'
 
 //CONSTANTS
 
@@ -29,7 +30,9 @@ export default function reducer(users = [], action) {
         return user.id !== action.id
       })
     case UPDATE:
-      return users
+      return users.filter(user => {
+        return user.id !== action.user.id
+      }).push(action.user)
 
     default:
       return users
@@ -53,6 +56,16 @@ export const addUser = (name, email, campusId) => dispatch => {
     .catch((err) => {
       console.log(err)
     })
+  browserHistory.push('/students')
+}
+
+export const updateUser = (id, newName, email, campusId) => dispatch => {
+  axios.put(`/api/students/${id}`,
+  {
+    name: newName, email: email, campusId: campusId
+  })
+  .then(res => dispatch(update(res.data)))
+  browserHistory.push(`/students/${id}`)
 }
 
 export const removeUser = (studentId) => dispatch => {

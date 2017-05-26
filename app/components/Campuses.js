@@ -6,6 +6,12 @@ import {deleteCampus} from '../redux/campuses'
 const Campuses = ({campuses, handleDelete}) => {
   return (
     <div>
+      <div>
+        <Link to="/addCampus">
+          <button>Add a Campus</button>
+        </Link>
+        </div>
+      <hr />
     {
       campuses.map(campus => {
         return (
