@@ -5,17 +5,12 @@ import {deleteCampus} from '../redux/campuses'
 
 const Campuses = ({campuses, handleDelete}) => {
   return (
-    <div>
-      <div>
-        <Link to="/addCampus">
-          <button>Add a Campus</button>
-        </Link>
-        </div>
-      <hr />
+    <div className="container-fluid">
+      <div className="row">
     {
       campuses.map(campus => {
         return (
-          <div key = {campus.id}>
+          <div className="col-lg-4" key = {campus.id}>
             <Link to = {`/campuses/${campus.name}`}>
               <div>
                 <h3>{campus.name}</h3>
@@ -23,12 +18,13 @@ const Campuses = ({campuses, handleDelete}) => {
               </div>
             </Link>
             <form onSubmit={handleDelete}>
-              <button name="delete"type="submit" value= {campus.name}>Delete Campus</button>
+              <button className="btn btn-danger btn-xs" name="delete"type="submit" value= {campus.name}>Delete Campus</button>
             </form>
            </div>
         )
       })
     }
+      </div>
     </div>
     )
 }

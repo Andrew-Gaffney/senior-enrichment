@@ -4,11 +4,16 @@ import {connect} from 'react-redux'
 import {updateCampus} from '../redux/campuses'
 import {removeUser} from '../redux/users'
 
+const listStyle = {
+  listStyleType: 'none',
+  fontSize: '24px'
+}
+
 const Campus = ({name, students, handleEdit, handleDelete}) => {
   return (
     <div>
-      <h3>{`${name} Campus`}</h3>
-      <ul>
+      <h2>{`${name} Campus`}</h2>
+      <ul style={listStyle}>
       { students.length ?
         students.map(student => {
           return (
@@ -17,7 +22,9 @@ const Campus = ({name, students, handleEdit, handleDelete}) => {
                 <li>{student.name}</li>
               </Link>
               <form onSubmit={handleDelete}>
-                <button name="delete"type="submit" value= {student.id}>Delete Student</button>
+                <button
+                  className ="btn btn-danger btn-xs"
+                  name="delete"type="submit" value= {student.id}>Delete</button>
               </form>
             </div>
           )
@@ -26,17 +33,17 @@ const Campus = ({name, students, handleEdit, handleDelete}) => {
       }
       </ul>
       <div>
-        <h3>Edit Campus Info</h3>
         <form onSubmit = {handleEdit}>
-          <div>
+          <h4>Edit Campus Info</h4>
+          <div className = "form-group col-lg-7">
             <label className= "control-label">Name</label>
             <input name="newName"className = "form-control" type = "text" />
           </div>
-          <div>
+          <div className="form-group col-lg-7">
             <label className= "control-label">Image Source</label>
             <input name="image"className = "form-control" type = "text" />
           </div>
-          <div>
+          <div className="col-lg-7">
             <button
               name="name"
               value={name}

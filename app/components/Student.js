@@ -14,17 +14,18 @@ const Student = ({student, campuses, campus, handleEdit}) => {
       </Link>
       <hr />
       <div>
-        <h3>Edit Campus Info</h3>
-        <form onSubmit = {handleEdit}>
-          <div>
+        <h3>Edit Student Info</h3>
+        <form className="form-group"onSubmit = {handleEdit}>
+          <div className ="col-lg-7">
             <label className= "control-label">Name</label>
             <input name="newName"className = "form-control" type = "text" />
           </div>
-          <div>
+          <div className ="col-lg-7">
             <label className= "control-label">Email</label>
             <input name="email"className = "form-control" type = "text" />
           </div>
-          <select name="campusId">
+          <hr className ="col-lg-12" />
+          <select className ="col-lg-7" name="campusId">
           {
             campuses.map(campus => {
               return (
@@ -33,7 +34,8 @@ const Student = ({student, campuses, campus, handleEdit}) => {
             })
           }
           </select>
-          <div>
+          <hr className ="col-lg-12" />
+          <div className ="col-lg-7">
             <button
               name="id"
               value={student.id}
@@ -66,7 +68,6 @@ const mapState = (state, ownProps) => {
 const mapDispatch = (dispatch) => {
   return {
     handleEdit: function(event) {
-      console.log(event.target)
       dispatch(updateUser(event.target.id.value, event.target.newName.value,
         event.target.email.value, event.target.campusId.value))
     }

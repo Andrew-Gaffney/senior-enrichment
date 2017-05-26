@@ -1,20 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
-import {Link, browserHistory} from 'react-router'
+import {Link} from 'react-router'
 import {removeUser} from '../redux/users'
 
+const listStyle = {
+  listStyleType: 'none',
+  fontSize: '24px'
+}
 
 const Students = ({students, campuses, handleDelete}) => {
   return (
     <div>
-      <div>
-        <Link to="/addStudent">
-          <button>Add a Student</button>
-        </Link>
-        </div>
-      <hr />
-      <label>All Students</label>
-      <ul>
+      <h4>All Students</h4>
+      <ul style= {listStyle}>
         { students.length ?
          students.map(student => {
            const relevantCampus = campuses.find(campus => {
@@ -26,8 +24,9 @@ const Students = ({students, campuses, handleDelete}) => {
               <li>{`${student.name} at ${relevantCampus.name} Campus`}</li>
              </Link>
               <form onSubmit={handleDelete}>
-                <button name="delete"type="submit" value= {student.id}>Delete Student</button>
+                <button className="btn btn-danger btn-xs" name="delete"type="submit" value= {student.id}>Delete</button>
               </form>
+              <hr className ="col-lg-12" />
              </div>
            )
          })

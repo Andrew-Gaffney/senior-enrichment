@@ -1,22 +1,21 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addUser} from '../redux/users'
-import {browserHistory} from 'react-router'
 
 const addStudent = ({campuses, handleSubmit}) => {
   return (
     <div>
       <h3>Add a Student</h3>
       <form onSubmit = {handleSubmit}>
-        <div>
+        <div className="form-group col-lg-7">
           <label className= "control-label">Name</label>
           <input name="name"className = "form-control" type = "text" />
         </div>
-        <div>
+        <div className="form-group col-lg-7">
           <label className= "control-label">Email</label>
           <input name="email"className = "form-control" type = "text" />
         </div>
-        <select name="campusId">
+        <select className="col-lg-7" name="campusId">
         {
           campuses.map(campus => {
             return (
@@ -25,7 +24,8 @@ const addStudent = ({campuses, handleSubmit}) => {
           })
         }
         </select>
-          <div>
+          <hr className= "col-lg-12" />
+          <div className="col-lg-7">
             <button
               type="submit"
               className="btn">
